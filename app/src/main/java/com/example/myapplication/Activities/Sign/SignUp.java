@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.example.myapplication.DataBase.users.UsersDataBase;
 import com.example.myapplication.DataBase.users.UsersInfoDataBase;
 import com.example.myapplication.R;
-import com.example.myapplication.Utils.Utils;
+import com.example.myapplication.Utils.Variables;
 
 public class SignUp extends AppCompatActivity {
 
@@ -147,7 +147,7 @@ public class SignUp extends AppCompatActivity {
 
             usersDB.insertData(usernameInput, passwordInput, calories);
             userInfoDB.insertData(ageInput, weightInput, heightInput, sexInt, goalInt, usernameInput);
-            Utils.setUsername(usernameInput);
+            Variables.setUsername(usernameInput);
             goToLogin();
             return true;
         }

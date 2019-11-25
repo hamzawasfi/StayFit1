@@ -9,7 +9,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.DataBase.users.DataModels.UsersModel;
-import com.example.myapplication.Utils.Utils;
+import com.example.myapplication.Utils.Variables;
 
 public class UsersDataBase extends DataBase{
 
@@ -63,7 +63,7 @@ public class UsersDataBase extends DataBase{
         if(cursor.getCount() != 0){
             while (cursor.moveToNext()){
                 usersModel = new UsersModel(cursor.getString(0), cursor.getString(1), Integer.parseInt(cursor.getString(2)));
-                Utils.addUser(usersModel);
+                Variables.addUser(usersModel);
                 Log.i("", "addUserModel");
             }
         }

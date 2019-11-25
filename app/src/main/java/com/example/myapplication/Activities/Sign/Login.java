@@ -5,19 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myapplication.Activities.Home.Home;
-import com.example.myapplication.DataBase.users.FoodDataBase;
 import com.example.myapplication.DataBase.users.UsersDataBase;
 import com.example.myapplication.DataBase.users.UsersInfoDataBase;
 import com.example.myapplication.R;
-import com.example.myapplication.Utils.Utils;
+import com.example.myapplication.Utils.Variables;
 
 public class Login extends AppCompatActivity {
 
@@ -46,7 +43,7 @@ public class Login extends AppCompatActivity {
         });
 
         username = (EditText)findViewById(R.id.username);
-        username.setText(Utils.getUsername());
+        username.setText(Variables.getUsername());
 
         password = (EditText)findViewById(R.id.password);
 
@@ -98,7 +95,7 @@ public class Login extends AppCompatActivity {
             warning.setText(R.string.blankInputs);
             return false;
         } else if(usersDB.match(usernameInput, passwordInput)){
-            Utils.setUsername(usernameInput);
+            Variables.setUsername(usernameInput);
             goToHome();
             return true;
         }else{

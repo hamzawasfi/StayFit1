@@ -4,13 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.DataBase.users.DataModels.UsersIndoModel;
-import com.example.myapplication.DataBase.users.DataModels.UsersModel;
-import com.example.myapplication.Utils.Utils;
+import com.example.myapplication.Utils.Variables;
 
 public class UsersInfoDataBase extends DataBase{
 
@@ -43,7 +41,7 @@ public class UsersInfoDataBase extends DataBase{
         if(cursor.getCount() != 0){
             while (cursor.moveToNext()){
                 usersInfoModel = new UsersIndoModel(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)), Integer.parseInt(cursor.getString(3)), Integer.parseInt(cursor.getString(4)), Integer.parseInt(cursor.getString(5)), cursor.getString(6));
-                Utils.addUserInfo(usersInfoModel);
+                Variables.addUserInfo(usersInfoModel);
             }
         }
     }

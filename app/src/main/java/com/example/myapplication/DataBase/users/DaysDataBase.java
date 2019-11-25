@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.DataBase.users.DataModels.DayModel;
-import com.example.myapplication.Utils.Utils;
+import com.example.myapplication.Utils.Variables;
 
 public class DaysDataBase extends DataBase {
 
@@ -62,7 +62,7 @@ public class DaysDataBase extends DataBase {
         if(cursor.getCount() != 0){
             while (cursor.moveToNext()) {
                 daysModel = new DayModel(Integer.parseInt(cursor.getString(0)), cursor.getString(1), Integer.parseInt(cursor.getString(2)), cursor.getString(3), Integer.parseInt(cursor.getString(4)), Integer.parseInt(cursor.getString(5)), cursor.getString(6));
-                Utils.addDay(daysModel);
+                Variables.addDay(daysModel);
             }
         }
     }

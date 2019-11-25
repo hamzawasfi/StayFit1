@@ -8,7 +8,7 @@ import com.example.myapplication.DataBase.users.DataModels.UsersModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Utils {
+public class Variables {
 
     private static int index;
     private static int index1;
@@ -51,7 +51,7 @@ public class Utils {
     }
 
     public static void setDays(List<DayModel> days) {
-        Utils.days = days;
+        Variables.days = days;
     }
 
     public static void addUser(UsersModel user){
@@ -77,7 +77,7 @@ public class Utils {
     }
 
     public static void setListItems(ArrayList<String> listItems) {
-        Utils.listItems = listItems;
+        Variables.listItems = listItems;
     }
 
 
@@ -86,7 +86,7 @@ public class Utils {
     }
 
     public static void setCalories(double calories) {
-        Utils.calories = calories;
+        Variables.calories = calories;
     }
 
     public static boolean isAdding() {
@@ -94,7 +94,7 @@ public class Utils {
     }
 
     public static void setAdding(boolean adding) {
-        Utils.adding = adding;
+        Variables.adding = adding;
     }
 
     public static boolean isInserting() {
@@ -102,7 +102,7 @@ public class Utils {
     }
 
     public static void setInserting(boolean inserting) {
-        Utils.inserting = inserting;
+        Variables.inserting = inserting;
     }
 
     public static ArrayList<String> getAddedItems() {
@@ -110,7 +110,7 @@ public class Utils {
     }
 
     public static void setAddedItems(ArrayList<String> addedItems) {
-        Utils.addedItems = addedItems;
+        Variables.addedItems = addedItems;
     }
 
     public static String getDate() {
@@ -118,7 +118,7 @@ public class Utils {
     }
 
     public static void setDate(String date) {
-        Utils.date = date;
+        Variables.date = date;
     }
 
     public static String getUsername() {
@@ -126,7 +126,7 @@ public class Utils {
     }
 
     public static void setUsername(String username) {
-        Utils.username = username;
+        Variables.username = username;
     }
 
     public static boolean isDateChanged() {
@@ -134,7 +134,7 @@ public class Utils {
     }
 
     public static void setDateChanged(boolean dateChanged) {
-        Utils.dateChanged = dateChanged;
+        Variables.dateChanged = dateChanged;
     }
 
     public static boolean isEditing() {
@@ -142,7 +142,7 @@ public class Utils {
     }
 
     public static void setEditing(boolean editing) {
-        Utils.editing = editing;
+        Variables.editing = editing;
     }
 
     public static int getIndex() {
@@ -150,7 +150,7 @@ public class Utils {
     }
 
     public static void setIndex(int index) {
-        Utils.index = index;
+        Variables.index = index;
     }
 
     public static ArrayList<Integer> getDayIndexes() {
@@ -158,7 +158,7 @@ public class Utils {
     }
 
     public static void setDayIndexes(ArrayList<Integer> dayIndexes) {
-        Utils.dayIndexes = dayIndexes;
+        Variables.dayIndexes = dayIndexes;
     }
 
     public static ArrayList<Integer> getFoodIndexes() {
@@ -166,7 +166,7 @@ public class Utils {
     }
 
     public static void setFoodIndexes(ArrayList<Integer> foodIndexes) {
-        Utils.foodIndexes = foodIndexes;
+        Variables.foodIndexes = foodIndexes;
     }
 
     public static int getIndex1() {
@@ -174,6 +174,6 @@ public class Utils {
     }
 
     public static void setIndex1(int index1) {
-        Utils.index1 = index1;
+        Variables.index1 = index1;
     }
 }

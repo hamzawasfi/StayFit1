@@ -4,13 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.DataBase.users.DataModels.FoodModel;
-import com.example.myapplication.DataBase.users.DataModels.UsersModel;
-import com.example.myapplication.Utils.Utils;
+import com.example.myapplication.Utils.Variables;
 
 
 public class FoodDataBase extends DataBase {
@@ -32,7 +30,7 @@ public class FoodDataBase extends DataBase {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL10_FOOD_NAME, foodName);
         contentValues.put(COL11_FOOD_CAL, calories);
-        contentValues.put(COL12_USERNAME, Utils.getUsername());
+        contentValues.put(COL12_USERNAME, Variables.getUsername());
         long result = db.insert(FOOD_TABLE_NAME, null, contentValues);
         if(result == -1){
             return false;
@@ -75,7 +73,7 @@ public class FoodDataBase extends DataBase {
         if(cursor.getCount() != 0){
             while (cursor.moveToNext()){
                 foodModel = new FoodModel(Integer.parseInt(cursor.getString(0)), cursor.getString(1), Integer.parseInt(cursor.getString(2)), cursor.getString(3));
-                Utils.addFood(foodModel);
+                Variables.addFood(foodModel);
             }
         }
     }

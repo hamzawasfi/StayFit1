@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.example.myapplication.DataBase.users.DataModels.FoodModel;
 import com.example.myapplication.DataBase.users.FoodDataBase;
 import com.example.myapplication.R;
-import com.example.myapplication.Utils.Utils;
+import com.example.myapplication.Utils.Variables;
 
 public class InsertItem extends AppCompatActivity {
 
@@ -44,7 +44,7 @@ public class InsertItem extends AppCompatActivity {
                 if(!checkInputs()){
                     return;
                 }else {
-                    Utils.setInserting(true);
+                    Variables.setInserting(true);
                     finish();
                 }
             }
@@ -74,12 +74,12 @@ public class InsertItem extends AppCompatActivity {
     }
 
     public void addFoodModel(){
-        Cursor cursor = foodDB.getUserLastData(Utils.getUsername());
+        Cursor cursor = foodDB.getUserLastData(Variables.getUsername());
 
         if(cursor.getCount() != 0){
             while (cursor.moveToNext()){
                 foodModel = new FoodModel(Integer.parseInt(cursor.getString(0)), cursor.getString(1), Integer.parseInt(cursor.getString(2)), cursor.getString(3));
-                Utils.addFood(foodModel);
+                Variables.addFood(foodModel);
             }
         }
     }

@@ -21,7 +21,7 @@ import com.example.myapplication.DataBase.users.DataModels.DayModel;
 import com.example.myapplication.DataBase.users.DaysDataBase;
 import com.example.myapplication.DataBase.users.FoodDataBase;
 import com.example.myapplication.R;
-import com.example.myapplication.Utils.Utils;
+import com.example.myapplication.Utils.Variables;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -75,17 +75,17 @@ public class Home extends AppCompatActivity {
         foodDB = new FoodDataBase(this);
         foodDB.addFoodModel();
         dayDB.addDayModel();
-        Toast.makeText(getApplicationContext(), Utils.getDays().size() + " ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), Variables.getDays().size() + " ", Toast.LENGTH_SHORT).show();
 
-        username = Utils.getUsername();
-        goalCalories = String.valueOf(Utils.getUsers().get(getUserIndex(username)).getGoalCalories());
+        username = Variables.getUsername();
+        goalCalories = String.valueOf(Variables.getUsers().get(getUserIndex(username)).getGoalCalories());
 
         listItems = new ArrayList<String>();
         addedItems = new ArrayList<String>();
 
         date = new SimpleDateFormat("yyyy-MM-dd");
         currentDate = date.format(new Date());
-        Utils.setDate(currentDate);
+        Variables.setDate(currentDate);
         //
 
         //UI casting
@@ -98,7 +98,7 @@ public class Home extends AppCompatActivity {
                 displayAddedItems(addedItems, getDayIndexes(username, currentDate));
                 deletebtn.setVisibility(View.INVISIBLE);
                 editbtn.setVisibility(View.INVISIBLE);
-                Utils.setEditing(true);
+                Variables.setEditing(true);
                 onPostResume();
             }
         });
@@ -107,8 +107,8 @@ public class Home extends AppCompatActivity {
         addedList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Utils.setIndex(position);
-                Utils.setIndex1(getRelatedItemIndex());
+                Variables.setIndex(position);
+                Variables.setIndex1(getRelatedItemIndex());
                 deletebtn.setVisibility(View.VISIBLE);
                 editbtn.setVisibility(View.VISIBLE);
                 return false;
@@ -168,7 +168,7 @@ public class Home extends AppCompatActivity {
         itemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Utils.setIndex(position);
+                Variables.setIndex(position);
                 openAddItem();
             }
         });
@@ -202,16 +202,16 @@ public class Home extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
 
-        if (Utils.isAdding() || Utils.isDateChanged() || Utils.isEditing()) {
+        if (Variables.isAdding() || Variables.isDateChanged() || Variables.isEditing()) {
             addedItems = new ArrayList<String>();
             displayAddedItems(addedItems, getDayIndexes(username, currentDate));
-            Utils.setAdding(false);
-            Utils.setDateChanged(false);
-            Utils.setEditing(false);
-        }else if(Utils.isInserting()){
+            Variables.setAdding(false);
+            Variables.setDateChanged(false);
+            Variables.setEditing(false);
+        }else if(Variables.isInserting()){
             listItems = new ArrayList<String>();
             displayItems(listItems, getFoodIndexes(username));
-            Utils.setInserting(false);
+            Variables.setInserting(false);
         }
 
         totalCalories = DisplayTotalCalories(getDayIndexes(username, currentDate));
@@ -220,8 +220,8 @@ public class Home extends AppCompatActivity {
     }
 
     public int getUserIndex(String username){
-        for(int i = 0; i < Utils.getUsers().size(); i++) {
-            if (Utils.getUsers().get(i).getUsername().equals(username)) {
+        for(int i = 0; i < Variables.getUsers().size(); i++) {
+            if (Variables.getUsers().get(i).getUsername().equals(username)) {
                 return i;
             }
         }
@@ -231,31 +231,31 @@ public class Home extends AppCompatActivity {
     public ArrayList<Integer> getFoodIndexes(String username){
         ArrayList<Integer> indexes = new ArrayList<Integer>();
 
-        for(int i = 0; i < Utils.getFoods().size(); i++) {
-            if (Utils.getFoods().get(i).getUsername().equals(username) || Utils.getFoods().get(i).getUsername().equals("global")) {
+        for(int i = 0; i < Variables.getFoods().size(); i++) {
+            if (Variables.getFoods().get(i).getUsername().equals(username) || Variables.getFoods().get(i).getUsername().equals("global")) {
                 indexes.add(i);
             }
         }
-        Utils.setFoodIndexes(indexes);
+        Variables.setFoodIndexes(indexes);
         return indexes;
     }
 
     public ArrayList<Integer> getDayIndexes(String username, String date){
         ArrayList<Integer> indexes = new ArrayList<Integer>();
 
-        for(int i = 0; i < Utils.getDays().size(); i++){
-            if(Utils.getDays().get(i).getUsername().equals(username) && Utils.getDays().get(i).getDate().equals(date)){
+        for(int i = 0; i < Variables.getDays().size(); i++){
+            if(Variables.getDays().get(i).getUsername().equals(username) && Variables.getDays().get(i).getDate().equals(date)){
                 indexes.add(i);
             }
         }
-        Utils.setDayIndexes(indexes);
+        Variables.setDayIndexes(indexes);
         return indexes;
     }
 
     private int getRelatedItemIndex() {
-        for(int i = 0; i < Utils.getFoods().size(); i++) {
-            if (Utils.getFoods().get(i).getID() == Utils.getDays().get(Utils.getDayIndexes().get(Utils.getIndex())).getFoodID()) {
-                Utils.setIndex1(i);
+        for(int i = 0; i < Variables.getFoods().size(); i++) {
+            if (Variables.getFoods().get(i).getID() == Variables.getDays().get(Variables.getDayIndexes().get(Variables.getIndex())).getFoodID()) {
+                Variables.setIndex1(i);
                 return i;
             }
         }
@@ -266,26 +266,26 @@ public class Home extends AppCompatActivity {
 
     public void displayItems(ArrayList<String> list, ArrayList<Integer> indexes){
         for(int i = 0; i < indexes.size(); i++) {
-            list.add(Utils.getFoods().get(indexes.get(i)).getFoodName() + "  " + Utils.getFoods().get(indexes.get(i)).getFoodCal() + "cal/100gm.");
+            list.add(Variables.getFoods().get(indexes.get(i)).getFoodName() + "  " + Variables.getFoods().get(indexes.get(i)).getFoodCal() + "cal/100gm.");
         }
         listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         itemsList.setAdapter(listAdapter);
-        Utils.setListItems(list);
+        Variables.setListItems(list);
     }
 
     public void displayAddedItems(ArrayList<String> list, ArrayList<Integer> indexes){
         for(int i = 0; i < indexes.size(); i++){
-            list.add(Utils.getDays().get(indexes.get(i)).getFoodName() + "  " + Utils.getDays().get(indexes.get(i)).getFoodCal() + "cal.");
+            list.add(Variables.getDays().get(indexes.get(i)).getFoodName() + "  " + Variables.getDays().get(indexes.get(i)).getFoodCal() + "cal.");
         }
         listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         addedList.setAdapter(listAdapter);
-        Utils.setAddedItems(list);
+        Variables.setAddedItems(list);
     }
 
     public int DisplayTotalCalories(ArrayList<Integer> indexes){
         int total = 0;
         for(int i = 0; i < indexes.size(); i++){
-            total += Utils.getDays().get(indexes.get(i)).getFoodCal();
+            total += Variables.getDays().get(indexes.get(i)).getFoodCal();
         }
         return total;
     }
@@ -294,11 +294,11 @@ public class Home extends AppCompatActivity {
 
     public void removeAddedItem(){
         List<DayModel> newModel;
-        dayDB.deleteRow(String.valueOf(Utils.getDays().get(Utils.getDayIndexes().get(Utils.getIndex())).getID()));
-        int x = Utils.getDayIndexes().get(Utils.getIndex());
-        newModel = Utils.getDays();
+        dayDB.deleteRow(String.valueOf(Variables.getDays().get(Variables.getDayIndexes().get(Variables.getIndex())).getID()));
+        int x = Variables.getDayIndexes().get(Variables.getIndex());
+        newModel = Variables.getDays();
         newModel.remove(x);
-        Utils.setDays(newModel);
+        Variables.setDays(newModel);
     }
 
     //
@@ -331,8 +331,8 @@ public class Home extends AppCompatActivity {
 
     public void goToNextDay(){
 
-        Utils.setDateChanged(true);
-        Utils.setAddedItems(new ArrayList<String>());
+        Variables.setDateChanged(true);
+        Variables.setAddedItems(new ArrayList<String>());
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar c = Calendar.getInstance();
@@ -345,14 +345,14 @@ public class Home extends AppCompatActivity {
         currentDate = sdf.format(c.getTime());
         Toast.makeText(getApplicationContext(), currentDate, Toast.LENGTH_SHORT).show();
 
-        Utils.setDate(currentDate);
+        Variables.setDate(currentDate);
         onPostResume();
     }
 
     public void goToPreviousDay(){
 
-        Utils.setDateChanged(true);
-        Utils.setAddedItems(new ArrayList<String>());
+        Variables.setDateChanged(true);
+        Variables.setAddedItems(new ArrayList<String>());
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar c = Calendar.getInstance();
@@ -365,7 +365,7 @@ public class Home extends AppCompatActivity {
         currentDate = sdf.format(c.getTime());  // dt is now the new date
         Toast.makeText(getApplicationContext(), currentDate, Toast.LENGTH_SHORT).show();
 
-        Utils.setDate(currentDate);
+        Variables.setDate(currentDate);
         onPostResume();
     }
 
